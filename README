@@ -1,0 +1,169 @@
+/**********************************************************
+* Project 2: CalcYouLater
+* CS 15
+* README
+* Author: Hannah Jiang (hjiang03)
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make CalcYouLater
+     - run executable with
+            ./CalcYouLater
+
+
+Program Purpose:
+
+    Implement a working reverse polish notation calculator using a
+    Stack. In this program we implemented the DatumStack and RPNCalc.
+    This allowed us to learn how stacks function and their usefulness in
+    programming.
+
+Acknowledgements: 
+
+    CS15 Lecture on Stacks
+    got_int.cpp (got_int function)
+
+Files: 
+
+    main.cpp:
+        Main file should be short and handle simple driver
+        functions such as reading in files.
+
+    RPNCalc.cpp:
+        Implementation of RPNCalc class. Main
+        functionality of running the RPNCalculator, should be able to
+        handle simple commands as well as complex commands using the
+        run function.
+
+    RPNCalc.h:
+        Interface of RPNCalc class.
+
+    DatumStack.cpp:
+        Implementation of DatumStack class. Main function is to create
+        a stack of Datum that can be edited by the functions
+        in the DatumStack class
+
+    DatumStack.h:
+        Interface of DatumStack class
+
+    parser.cpp:
+        Implementation of the parser struct. Main function is to read in
+        a file/input stream and to create a rstring based on the information
+        given to the function and return the rstring.
+
+    parser.h:
+        Interface of the parser struct
+
+    Datum.h:
+        Interface of Datum class
+
+    theCalcYouLater:
+        reference implementation for students to see how CalcYouLater works
+
+    unit_tests.h:
+        Holds the testing for the DatumStack class and parser struct
+
+    test1-6.txt:
+        Test files for my parser function
+
+    
+Data Structures:
+
+    The data structure that I used in this project was the stack.
+    We created a DatumStack.cpp/DatumStack.h files to hold the functions
+    that would be used in a stack. The stack is a "last in, first out"
+    data structure. Meaning the first element added is the last one removed.
+    The stack only uses one of its ends, meaning the user is only able to
+    pop/push on one end of the stack. The stack is useful as a method of
+    limiting access to elements. Especially since the user is only able to
+    edit/use the first element of the stack until it is popped off the stack.
+    The disadvantages of the stack is that the user is not able to access any
+    point/data in the stack (aka random access). Stacks also have very limited
+    memory which can make it hard to add a lot of objects. Some examples of
+    stacks in real life are like a deck of cards or stack of plates.
+    A user cannot access the other elements without taking the first element 
+    in the stack off. The functions that we implemented in the
+    DatumStack.cpp/DatumStack.h file were push(), pop(), top(), isEmpty(),
+    size(), clear(). The push() function added elements to the "top" of the
+    stack. pop() removed the first element in the stack. top() returned the
+    first element without popping it off the stack. isEmpty() returned
+    true/false depending on if the stack was empty. size() returned the
+    number of elements in the stack. clear() cleared the stack. These
+    functions all help with the stacks LIFO method. We used a stack for
+    RPNCalc because it operations have to be solved in a certain order.
+    Another situation that a stack could be useful for are backtracking.
+    Because a stack has the LIFO a user can backtrack using the stack. More
+    specifically like websites, if a user stores all the websites using a stack
+    when they want to go back to a previous website, they can just pop off the
+    first element/website off the stack and get to the previous website.
+    Another situation a stack could be used for is reversing a string/input.
+    In particular, if a user wanted to reverse a string (e.g jkl to lkj)
+    they would have to just push each character into the stack and print
+    it out from that. 
+
+
+Testing:
+
+    ---DATUMSTACK.CPP TESTING--- 
+
+    The first part of this project that I started testing was my
+    DatumStack. I coded each function one by one and then tested them using
+    my unit_tests.h file. Through this file I was able to make sure that
+    each one of my functions were working properly. I thought of edge cases
+    and tested them using this file. For the functions where there was
+    Datum being pushed onto the stack, I made sure to check that
+    it was properly being pushed on (aka if I made an array of Datum
+    making sure that it was being pushed "backwards"). I tested this by
+    using assert. I then called the top function and then the get(type of 
+    Datum e.g. int, bool, etc) to make sure that the right Datum was
+    at the front of the stack. I also made sure to check that the
+    exceptions were being thrown correctly by testing the cases where
+    the exceptions should've been thrown. After I made sure to throughly
+    test my DatumStack.cpp I was done with the first part of the 
+    project.
+
+    Also all of my DatumStack functions were individually tested in the
+    unit_tests.h file which allowed for debugging. Most test cases had
+    multiple testing functions written to test all cases such as 
+    throwing/catching errors etc.
+
+    ---PARSER.CPP TESTING--- 
+
+    Since parser only contained one function, all I had to do was just
+    test this in my unit_tests.h file. I made a separate text file to send
+    information into my parseRstring function. I tested my error case and
+    the regular case of a properly working parser. Once my parser
+    produced the output that I expected I was done with the parser.cpp files.
+    
+    Note: did submit a parser.cpp/parser.h file for the final submission
+    but it was moved to the RPNCalc.cpp/RPNcalc.h files as a function.
+
+    * the function tested in unit_tests.h is commened out
+
+    ---RPNCALC.CPP TESTING---
+
+    I temporarily made my functions public and tested them in the 
+    unit_tests.h file.After testing just the general usage of the functions,
+    the complex functions (exec, file, if), I just tested in terminal by 
+    sending in input and creating RStrings to test them. I also sent in the 
+    test files that were provided (e.g fact.cylc) and used that to 
+    diff against the test program. Once my program diffed against the 
+    demo program, I was done with RPNCalc.
+
+    * these functions in unit_tests.h are commented out
+
+Bugs:
+
+    While I did test most cases there was one case in my program that I could
+    not figure out how to fix. When sending in a file through the command
+    ./CalcYouLater < [filename], my program does not end the reading in by
+    cerr << "Thanks for using CalcYouLater." and instead will proceed to ask
+    for input. However, when sending in input as ./CalcYouLater then typing the
+    command { [filename] } then file, the program will run same as the demo.
+
+
+Time Spent:
+
+    PART 1: 4 hours
+    PART 2: 20 hours
